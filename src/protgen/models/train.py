@@ -4,7 +4,7 @@ from mlp import MLP
 from protgen.data import ProteinDataset
 from torch.utils.data import DataLoader
 
-device = torch.device("cpu")
+device = torch.device("cuda")
 num_epochs = 20
 model = MLP().to(device)
 criterion = nn.CrossEntropyLoss(ignore_index=-1)
@@ -62,7 +62,7 @@ for epoch in range(num_epochs):
         x_small_sequences, tgt = make_windows(data, target)
         with torch.no_grad():
             output = model(x_small_sequences)
-            predicted = output.argmax(1).cpu()
+            predicted = output.argmax(1)
             test_correct += (tgt==predicted).sum().item()
             valid = tgt != -1
             test_num += valid.sum().item()
