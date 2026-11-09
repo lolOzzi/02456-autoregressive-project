@@ -5,10 +5,10 @@ from protgen.data import ProteinDataset
 from torch.utils.data import DataLoader
 
 device = torch.device("cpu")
-num_epochs = 5
+num_epochs = 20
 model = MLP().to(device)
 criterion = nn.CrossEntropyLoss(ignore_index=-1)
-optimizer = torch.optim.Adam(model.parameters(), lr=1e-4)
+optimizer = torch.optim.Adam(model.parameters(), lr=1e-3)
 
 train_data = ProteinDataset('data/train.csv')
 val_data = ProteinDataset("data/val.csv")
