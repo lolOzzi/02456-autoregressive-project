@@ -10,12 +10,6 @@ model.load_state_dict(trained)
 model.eval()
 
 
-def generateProtein():
-    with torch.no_grad():
-        first = torch.tensor([[1]]).to(device)
-        next = model(first)
-        print(next)
-generateProtein()
 
 
 def generateProtein(max_len = 128):
